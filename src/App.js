@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import Landing from './Landing';
+import Survey from './Survey';
+import Showcase from './Showcase';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <MuiThemeProvider >
+        <div className="container">
+          <AppBar title="Podcast Finder" />
+          <div className="content">
+            <Switch>
+              <Route exact path='/' component={Landing}/>
+              <Route path='/survey' component={Survey}/>
+              <Route path='/showcase' component={Showcase}/>
+            </Switch>
+          </div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
