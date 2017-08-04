@@ -1,2 +1,2 @@
 # Podcast-Finder
-Recommend podcast for every user's taste.
+Recommend podcasts for every user's taste.
