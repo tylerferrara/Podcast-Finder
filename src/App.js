@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Landing from './Landing';
-import Survey from './Survey';
+import Survey from './survey/Survey';
 import Showcase from './Showcase';
 
 

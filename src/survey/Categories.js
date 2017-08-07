@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { GridList, GridTile } from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import { connect } from 'react-redux';
-import * as Actions from './redux/Actions';
+import * as Actions from '../redux/Actions';
 import './Categories.css';
 
 class Categories extends Component {

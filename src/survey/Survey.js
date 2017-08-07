@@ -11,10 +11,11 @@ import FlatButton from 'material-ui/FlatButton';
 import Slider from 'material-ui/Slider';
 import Categories from './Categories';
 import { connect } from 'react-redux';
-import * as Actions from './redux/Actions';
+import * as Actions from '../redux/Actions';
 import NumberInput from 'material-ui-number-input';
 import WarningIcon from 'material-ui/svg-icons/alert/warning';
 import {red500} from 'material-ui/styles/colors';
+import * as AS from './AudioSearch';
 
 class Survey extends React.Component {
 
@@ -43,10 +44,6 @@ class Survey extends React.Component {
       });
   }
 
-  componentDidMount() {
-
-  }
-
   state = {
     finished: false,
     stepIndex: 0,
@@ -70,25 +67,7 @@ class Survey extends React.Component {
     this.setState({
       finished: true
     });
-    console.log("time to do ajax request")
-    const url = 'https://www.audiosear.ch/api/categories';
-    let myInit = {
-      method: 'GET',
-      mode: 'cors'
-    }
-    let results;
-    fetch(url, myInit)
-      .then(function(response) {
-        return response.text();
-      })
-      .then(function(data) {
-        results = JSON.parse(data);
-        console.log(results);
-      })
-      .catch(function(error) {
-        console.log('Request failed', error)
-      });
-
+    console.log("time to do ajax request");
   }
 
   getStepContent(stepIndex) {
