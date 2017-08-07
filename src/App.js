@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -13,7 +14,7 @@ class App extends Component {
     return (
       <MuiThemeProvider >
         <div className="container">
-          <AppBar title="Podcast Finder" />
+          <AppBar title={<Link id="title" to='/'>Podcast Finder</Link>} style={{boxShadow: 'none'}} />
           <div className="content">
             <Switch>
               <Route exact path='/' component={Landing}/>

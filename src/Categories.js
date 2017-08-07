@@ -16,19 +16,19 @@ class Categories extends Component {
     } else {
       newArray = this.props.selected.concat(title);
     }
-    this.props.setCategories(newArray);
+    this.props.setSelectedCategories(newArray);
   }
   showTiles = () => {
     let color;
     const result = this.props.categories.map(tile =>  {
-      if(this.props.selected.indexOf(tile.title) >= 0) {
+      if(this.props.selected.indexOf(tile) >= 0) {
         color = 'rgba(56,142,60,0.9)';
       } else {
         color = 'rgba(0,0,0,0.4)';
       }
       return (
-        <GridTile className="tile" titleBackground={color} key={tile.title} title={tile.title} subtitle={tile.desc} onTouchTap={() => this.handleTap(tile.title)}>
-          <img src={tile.img} alt={tile.desc} />
+        <GridTile className="tile" titleBackground={color} key={tile} title={tile} subtitle={tile} onTouchTap={() => this.handleTap(tile)}>
+          <img src={'https://hlfppt.org/wp-content/uploads/2017/04/placeholder.png'} alt={tile} />
         </GridTile>
       );
     });
@@ -54,7 +54,8 @@ const mapStateToProps = function(store) {
 };
 
 const mapDispatchToProps = {
-  setCategories: Actions.setCategories
+  setCategories: Actions.setCategories,
+  setSelectedCategories: Actions.setSelectedCategories
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

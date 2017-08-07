@@ -1,7 +1,13 @@
 .Landing {
   background-color: #00BCD4;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.Landing > h1 {
+  color: #A2E4EB;
+  font-size: 2rem;
 }

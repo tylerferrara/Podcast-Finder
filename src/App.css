@@ -9,3 +9,8 @@
   flex: 1;
   overflow: auto;
 }
+
+#title {
+  text-decoration: none;
+  color: white;
+}

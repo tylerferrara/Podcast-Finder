@@ -13,13 +13,38 @@ import Categories from './Categories';
 import { connect } from 'react-redux';
 import * as Actions from './redux/Actions';
 import NumberInput from 'material-ui-number-input';
-
+import WarningIcon from 'material-ui/svg-icons/alert/warning';
+import {red500} from 'material-ui/styles/colors';
 
 class Survey extends React.Component {
 
   componentWillMount() {
     this.props.clearValues();
-    console.log("Just cleared the values for the survey...")
+    console.log("Just cleared the values for the survey...");
+    console.log("Populating Categories");
+    const url = 'https://www.audiosear.ch/api/categories';
+    let myInit = {
+      method: 'GET',
+      mode: 'cors'
+    }
+    let results = [];
+    fetch(url, myInit)
+      .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+        results = JSON.parse(data).map(result => {
+          return result.name;
+        });
+        this.props.setCategories(results);
+      })
+      .catch((error) => {
+        console.log('Request failed', error)
+      });
+  }
+
+  componentDidMount() {
+
   }
 
   state = {
@@ -30,8 +55,7 @@ class Survey extends React.Component {
   handleNext = () => {
     const {stepIndex} = this.state;
     this.setState({
-      stepIndex: stepIndex + 1,
-      finished: stepIndex >= 2,
+      stepIndex: stepIndex + 1
     });
   };
 
@@ -41,6 +65,31 @@ class Survey extends React.Component {
       this.setState({stepIndex: stepIndex - 1});
     }
   };
+
+  endSurvey = () => {
+    this.setState({
+      finished: true
+    });
+    console.log("time to do ajax request")
+    const url = 'https://www.audiosear.ch/api/categories';
+    let myInit = {
+      method: 'GET',
+      mode: 'cors'
+    }
+    let results;
+    fetch(url, myInit)
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(data) {
+        results = JSON.parse(data);
+        console.log(results);
+      })
+      .catch(function(error) {
+        console.log('Request failed', error)
+      });
+
+  }
 
   getStepContent(stepIndex) {
     switch (stepIndex) {
@@ -84,19 +133,49 @@ class Survey extends React.Component {
     }
   }
 
+  renderRaisedButton = () => {
+    if (this.state.stepIndex === 2 && (this.props.age === 0 || this.props.selectedCat.length === 0)) {
+      //Not finished yet
+      return (
+        <RaisedButton
+          label='Finish'
+          disabled={true}
+          primary={true}
+        />)
+    } else if (this.state.stepIndex === 2) {
+      return (
+        <RaisedButton
+          label='Finish'
+          primary={true}
+          onTouchTap={this.endSurvey}
+        />)
+    } else {
+      return (
+        <RaisedButton
+          label='Next'
+          primary={true}
+          onTouchTap={this.handleNext}
+        />)
+    }
+  }
+
   render() {
     const {finished, stepIndex} = this.state;
     return (
       <div className="Survey center" >
         <Stepper activeStep={stepIndex}>
           <Step>
-            <StepLabel>Age</StepLabel>
+            {(stepIndex > 0 && this.props.age === 0) ? (
+                <StepLabel icon={<WarningIcon color={red500} />} style={{color: red500}}>Age</StepLabel>
+              ) : (
+                <StepLabel >Age</StepLabel>
+            )}
           </Step>
           <Step>
             <StepLabel>Story</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Categories</StepLabel>
+            <StepLabel >Categories</StepLabel>
           </Step>
         </Stepper>
         <div className="component">
@@ -117,11 +196,7 @@ class Survey extends React.Component {
                   onTouchTap={this.handlePrev}
                   style={{marginRight: 12}}
                 />
-                <RaisedButton
-                  label={stepIndex === 2 ? 'Finish' : 'Next'}
-                  primary={true}
-                  onTouchTap={this.handleNext}
-                />
+                {this.renderRaisedButton()}
               </div>
             </div>
           )}
@@ -134,14 +209,16 @@ class Survey extends React.Component {
 const mapStateToProps = function(store) {
   return {
     age: store.age,
-    story: store.story
+    story: store.story,
+    selectedCat: store.selectedCat
   };
 };
 
 const mapDispatchToProps = {
   clearValues: Actions.clearValues,
   setAge: Actions.setAge,
-  setStory: Actions.setStory
+  setStory: Actions.setStory,
+  setCategories: Actions.setCategories,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Survey);
