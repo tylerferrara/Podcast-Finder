@@ -15,7 +15,7 @@ import * as Actions from '../redux/Actions';
 import NumberInput from 'material-ui-number-input';
 import WarningIcon from 'material-ui/svg-icons/alert/warning';
 import {red500} from 'material-ui/styles/colors';
-import * as AS from './AudioSearch';
+import * as API from '../Api';
 
 class Survey extends React.Component {
 
@@ -23,25 +23,7 @@ class Survey extends React.Component {
     this.props.clearValues();
     console.log("Just cleared the values for the survey...");
     console.log("Populating Categories");
-    const url = 'https://www.audiosear.ch/api/categories';
-    let myInit = {
-      method: 'GET',
-      mode: 'cors'
-    }
-    let results = [];
-    fetch(url, myInit)
-      .then((response) => {
-        return response.text();
-      })
-      .then((data) => {
-        results = JSON.parse(data).map(result => {
-          return result.name;
-        });
-        this.props.setCategories(results);
-      })
-      .catch((error) => {
-        console.log('Request failed', error)
-      });
+    API.getGenres();
   }
 
   state = {
@@ -64,10 +46,10 @@ class Survey extends React.Component {
   };
 
   endSurvey = () => {
+    API.getResults();
     this.setState({
       finished: true
     });
-    console.log("time to do ajax request");
   }
 
   getStepContent(stepIndex) {
@@ -76,11 +58,18 @@ class Survey extends React.Component {
         return (
           <div>
             <p>How old are you?</p>
-            <NumberInput id="age" onChange={
+            <input type="number" onChange={
               (e) => {
-                this.props.setAge(e.target.value);
+                console.log(typeof(e.target.value/1));
+                this.props.setAge(e.target.value/1);
               }
             }/>
+            {/* <NumberInput id="age" onChange={
+              (e) => {
+
+                this.props.setAge(e.target.value);
+              }
+            }/> */}
           </div>
         )
       case 1:

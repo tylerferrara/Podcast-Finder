@@ -12,7 +12,7 @@ import Showcase from './Showcase';
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider >
+      <MuiThemeProvider className="App">
         <div className="container">
           <AppBar title={<Link id="title" to='/'>Podcast Finder</Link>} style={{boxShadow: 'none'}} />
           <div className="content">

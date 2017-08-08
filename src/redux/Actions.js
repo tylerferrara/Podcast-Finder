@@ -7,6 +7,7 @@ export function setStory(data) {
 }
 
 export function setCategories(data) {
+  console.log("Action called!!!!");
   return {type: 'SET_CATEGORIES', categories: data}
 }
 
@@ -16,6 +17,10 @@ export function clearValues() {
 
 export function setResults(data) {
   return {type: 'SET_RESULTS', results: data}
+}
+
+export function addResults(data) {
+  return {type: 'ADD_RESULTS', results: data}
 }
 
 export function setSelectedCategories(data) {

@@ -26,6 +26,7 @@ function reducer(state = initialState, action={}) {
         selectedCat: action.selected
       }
     case 'SET_CATEGORIES':
+      console.log("Reducer called!!!!");
       return {
         ...state,
         categories: action.categories
@@ -41,6 +42,11 @@ function reducer(state = initialState, action={}) {
       return {
         ...state,
         results: action.results
+      }
+    case 'ADD_RESULTS':
+      return {
+        ...state,
+        results: state.results.concat(action.results)
       }
     default:
       return state;

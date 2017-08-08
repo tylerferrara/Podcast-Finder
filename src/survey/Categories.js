@@ -21,14 +21,14 @@ class Categories extends Component {
   showTiles = () => {
     let color;
     const result = this.props.categories.map(tile =>  {
-      if(this.props.selected.indexOf(tile) >= 0) {
+      if(this.props.selected.indexOf(tile.name) >= 0) {
         color = 'rgba(56,142,60,0.9)';
       } else {
         color = 'rgba(0,0,0,0.4)';
       }
       return (
-        <GridTile className="tile" titleBackground={color} key={tile} title={tile} subtitle={tile} onTouchTap={() => this.handleTap(tile)}>
-          <img src={'https://hlfppt.org/wp-content/uploads/2017/04/placeholder.png'} alt={tile} />
+        <GridTile className="tile" titleBackground={color} key={tile.id} title={tile.name} onTouchTap={() => this.handleTap(tile.name)}>
+          <img src={'https://hlfppt.org/wp-content/uploads/2017/04/placeholder.png'} alt={tile.name} />
         </GridTile>
       );
     });

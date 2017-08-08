@@ -1,28 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Showcase.css';
 
-const Showcase = ({age, story, selected}) => {
-  return (
-    <div className="Showcase center">
-      <h1>showcase</h1>
-      <h3>selections</h3>
-      <ul>
-        <li>{age}</li>
-        <li>{story}</li>
-        <li>{selected}</li>
-      </ul>
-      <Link to="survey">Take it again!</Link>
-    </div>
-  );
+class Showcase extends Component {
+  showAll = () => {
+    let array = [];
+    this.props.results.forEach(result => {
+      array.push(
+        <a key={result.trackCensoredName} target="_blank" href={result.collectionViewUrl}>
+          <img className="artwork" src={result.artworkUrl600} alt={result.trackCensoredName}/>
+        </a>
+      );
+    })
+    return array;
+  }
+
+  // imageLoad = () => {
+  //   let images = document.querySelectorAll("img.artwork");
+  //   images.forEach(function(image){
+  //     if(image.loaded == false){
+  //       return null;
+  //     } else{
+  //
+  //     }
+  //
+  //   })
+  //   console.log(images);
+  // }
+
+  render() {
+    return (
+      <div className="Showcase center">
+        <div className={"showContainer "}>
+          {this.showAll()}
+        </div>
+        <Link to="survey">Take it again!</Link>
+      </div>
+    );
+  }
+
 }
 
 const mapStateToProps = function(store) {
   return {
-    age: store.age,
-    story: store.story,
-    selected: store.selectedCat
+    results: store.results,
   };
 };
 
