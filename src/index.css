@@ -13,3 +13,8 @@ html {
   max-width: 900px;
   margin: auto;
 }
+
+.contained {
+  margin: 0 16px;
+  max-width: 900px;
+}

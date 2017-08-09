@@ -19,6 +19,7 @@
   "devDependencies": {
     "material-ui": "^0.18.7",
     "material-ui-number-input": "^5.0.24",
+    "react-image": "^1.0.1",
     "react-tap-event-plugin": "^2.0.1"
   }
 }

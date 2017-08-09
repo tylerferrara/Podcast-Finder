@@ -69,8 +69,8 @@ export function getResults() {
 }
 
 function containsMostIds(collection, ids) {
-  let target = 3;
-  if(ids.length <= 3) {
+  let target = 2;
+  if(ids.length <= 2) {
     target = ids.length;
   }
   let found = 0;
