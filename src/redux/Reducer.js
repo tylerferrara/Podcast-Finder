@@ -36,7 +36,8 @@ function reducer(state = initialState, action={}) {
         ...state,
         age: 0,
         story: 0.5,
-        selectedCat: []
+        selectedCat: [],
+        results: []
       }
     case 'SET_RESULTS':
       return {

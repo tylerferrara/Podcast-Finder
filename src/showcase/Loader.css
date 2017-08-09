@@ -1,0 +1,15 @@
+.Loader {
+  margin-top: 25vh;
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+  transition: all 0.3s
+}
+
+.fadeLoader {
+  opacity: 0;
+}
+
+.removeLoader {
+  display: none;
+}

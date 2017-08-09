@@ -58,18 +58,17 @@ class Survey extends React.Component {
         return (
           <div>
             <p>How old are you?</p>
-            <input type="number" onChange={
+            {/* <input type="number" onChange={
               (e) => {
                 console.log(typeof(e.target.value/1));
                 this.props.setAge(e.target.value/1);
               }
-            }/>
-            {/* <NumberInput id="age" onChange={
-              (e) => {
-
-                this.props.setAge(e.target.value);
-              }
             }/> */}
+            <NumberInput id="age" onChange={
+              (e) => {
+                this.props.setAge(e.target.value/1);
+              }
+            }/>
           </div>
         )
       case 1:

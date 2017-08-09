@@ -6,20 +6,35 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Landing from './Landing';
 import Survey from './survey/Survey';
-import Showcase from './Showcase';
-
+import Showcase from './showcase/Showcase';
+import Error from './Error';
+import Menu from './Menu';
 
 class App extends Component {
+  state = {
+    showMenu: false
+  }
+  toggleMenu = () => {
+    console.log("toggle time");
+    this.setState({
+      showMenu: !this.state.showMenu
+    })
+  }
   render() {
     return (
       <MuiThemeProvider className="App">
         <div className="container">
-          <AppBar title={<Link id="title" to='/'>Podcast Finder</Link>} style={{boxShadow: 'none'}} />
+          <Menu showMenu={this.state.showMenu}/>
+          <AppBar
+            onLeftIconButtonTouchTap={this.toggleMenu}
+            title={<Link id="title" to='/'>Podcast Finder</Link>}
+            style={{boxShadow: 'none'}} />
           <div className="content">
             <Switch>
               <Route exact path='/' component={Landing}/>
               <Route path='/survey' component={Survey}/>
               <Route path='/showcase' component={Showcase}/>
+              <Route path='*' component={Error}/>
             </Switch>
           </div>
         </div>

@@ -1,0 +1,14 @@
+.Menu {
+  left: -320px;
+  position: absolute;
+  z-index: 1200;
+  height: 100vh;
+  width: 320px;
+  background-color: green;
+  transition: transform 0.3s;
+}
+
+.showMenu {
+  background-color: pink;
+  transform: translateX(320px);
+}

@@ -3,11 +3,11 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 
 .Landing > h1 {
+  margin-top: 25vh;
   color: #A2E4EB;
   font-size: 2rem;
   margin-bottom: 2rem;

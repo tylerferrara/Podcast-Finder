@@ -18,3 +18,7 @@ html {
   margin: 0 16px;
   max-width: 900px;
 }
+
+.hidden {
+  display: none;
+}
