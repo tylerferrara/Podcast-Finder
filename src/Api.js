@@ -1,8 +1,29 @@
 import * as Actions from './redux/Actions';
 import { store } from './redux/Reducer';
-const tech = 'https://itunes.apple.com/search?country=us&term=tech&media=podcast';
+
+const secret = 'b1a57caa66e8681bbe0ab3ddaf306616ff301b12abfa4d76e270d567f05e9cea';
+const appId = '06771e6f51e64a127d7ce7402f2fbcc937ab011f8bd205152f6494c4d7dd6c28';
+
+// const tech = 'https://itunes.apple.com/search?country=us&term=tech&media=podcast';
 const genre = 'https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/genres?id=';
-const podcastsInGenre = 'https://itunes.apple.com/search?term=podcast&limit=500&genreId='
+const podcastsInGenre = 'https://itunes.apple.com/search?term=podcast&limit=200&genreId='
+
+
+
+
+var Audiosearch = require('audiosearch-client-node');
+
+var audiosearch = new Audiosearch(appId, secret, null);
+
+console.log(audiosearch);
+
+// export function test() {
+//   audiosearch.searchEpisodes('cat').then(function (results) {
+//     console.log("Audiosear.ch results>>>>>>>>>")
+//     console.log(results);
+//   });
+// }
+
 
 export function getGenres() {
   console.log("getting genres");

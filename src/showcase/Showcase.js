@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Showcase.css';
-import Img from 'react-image'
 import Loader from './Loader';
 import Error from '../Error';
 
@@ -17,12 +16,10 @@ class Showcase extends Component {
   }
 
   imgLoaded = () => {
-    console.log("one img just got loaded!");
     this.setState({loadedCount: this.state.loadedCount+1});
     if(this.state.loadedCount+1 >= this.props.results.length) {
       console.log("we just loaded all of the images! YEEEEEAHH!!!!!");
       this.setState({isLoading: false});
-
     }
   }
 
@@ -81,7 +78,6 @@ class Showcase extends Component {
   }
 
   render() {
-{this.renderLoader()}
     return (
       <div className="Showcase center">
         {this.podcastsToRender()}

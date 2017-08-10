@@ -2,11 +2,8 @@ import React from 'react';
 import Spinner from 'react-spinner-material';
 import './Loader.css';
 
-let toShow = true;
-
 const Loader = ({isLoading, loaderRemoved}) => {
   console.log('loading LOADER');
-  toShow = isLoading;
   let loadClass = '';
   if(!isLoading) {
     loadClass = 'fadeLoader';

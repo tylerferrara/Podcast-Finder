@@ -20,10 +20,11 @@ import * as API from '../Api';
 class Survey extends React.Component {
 
   componentWillMount() {
-    this.props.clearValues();
     console.log("Just cleared the values for the survey...");
+    this.props.clearValues();
     console.log("Populating Categories");
     API.getGenres();
+    // API.test();
   }
 
   state = {

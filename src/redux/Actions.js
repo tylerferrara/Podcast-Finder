@@ -7,7 +7,6 @@ export function setStory(data) {
 }
 
 export function setCategories(data) {
-  console.log("Action called!!!!");
   return {type: 'SET_CATEGORIES', categories: data}
 }
 

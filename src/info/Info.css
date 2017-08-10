@@ -1,0 +1,22 @@
+.Info {
+  padding-top: 2rem;
+}
+
+.infoContainer {
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.infoContainer h1 {
+  font-weight: 400;
+}
+
+.infoContainer h2 {
+  font-weight: 200;
+  color: #606060;
+}

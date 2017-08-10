@@ -26,7 +26,6 @@ function reducer(state = initialState, action={}) {
         selectedCat: action.selected
       }
     case 'SET_CATEGORIES':
-      console.log("Reducer called!!!!");
       return {
         ...state,
         categories: action.categories

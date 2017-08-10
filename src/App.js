@@ -9,13 +9,15 @@ import Survey from './survey/Survey';
 import Showcase from './showcase/Showcase';
 import Error from './Error';
 import Menu from './Menu';
+import New from './new/New';
+import Info from './info/Info';
+import Trending from './trending/Trending';
 
 class App extends Component {
   state = {
     showMenu: false
   }
   toggleMenu = () => {
-    console.log("toggle time");
     this.setState({
       showMenu: !this.state.showMenu
     })
@@ -24,7 +26,7 @@ class App extends Component {
     return (
       <MuiThemeProvider className="App">
         <div className="container">
-          <Menu showMenu={this.state.showMenu}/>
+          <Menu showMenu={this.state.showMenu} hideMenu={() => this.toggleMenu()}/>
           <AppBar
             onLeftIconButtonTouchTap={this.toggleMenu}
             title={<Link id="title" to='/'>Podcast Finder</Link>}
@@ -34,6 +36,9 @@ class App extends Component {
               <Route exact path='/' component={Landing}/>
               <Route path='/survey' component={Survey}/>
               <Route path='/showcase' component={Showcase}/>
+              <Route path='/new' component={New}/>
+              <Route path='/info' component={Info}/>
+              <Route path='/trending' component={Trending}/>
               <Route path='*' component={Error}/>
             </Switch>
           </div>

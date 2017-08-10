@@ -1,0 +1,12 @@
+.New {
+  padding-top: 2rem;
+}
+
+.newContainer {
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
