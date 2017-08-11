@@ -6,7 +6,7 @@ class New extends Component {
     return (
       <div className="New">
         <div className="newContainer center">
-          <h1>Im the new stuff!!!</h1>
+          <h1>Coming soon!!!</h1>
         </div>
       </div>
     )

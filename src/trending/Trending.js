@@ -6,7 +6,7 @@ class Trending extends Component {
     return (
       <div className="Trending">
         <div className="trendingContainer center">
-          <h1>Im the TRENDY stuff!!!</h1>
+          <h1>Coming soon!!!</h1>
         </div>
       </div>
     )

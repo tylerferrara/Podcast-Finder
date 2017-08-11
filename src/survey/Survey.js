@@ -20,9 +20,7 @@ import * as API from '../Api';
 class Survey extends React.Component {
 
   componentWillMount() {
-    console.log("Just cleared the values for the survey...");
     this.props.clearValues();
-    console.log("Populating Categories");
     API.getGenres();
     // API.test();
   }
@@ -59,12 +57,6 @@ class Survey extends React.Component {
         return (
           <div>
             <p>How old are you?</p>
-            {/* <input type="number" onChange={
-              (e) => {
-                console.log(typeof(e.target.value/1));
-                this.props.setAge(e.target.value/1);
-              }
-            }/> */}
             <NumberInput id="age" onChange={
               (e) => {
                 this.props.setAge(e.target.value/1);

@@ -18,7 +18,6 @@ class Showcase extends Component {
   imgLoaded = () => {
     this.setState({loadedCount: this.state.loadedCount+1});
     if(this.state.loadedCount+1 >= this.props.results.length) {
-      console.log("we just loaded all of the images! YEEEEEAHH!!!!!");
       this.setState({isLoading: false});
     }
   }
@@ -41,7 +40,6 @@ class Showcase extends Component {
   }
 
   showContent = () => {
-    console.log("we can display the content now!!!");
     this.setState({contentClass: 'fadeIn', removeLoader: true});
   }
 

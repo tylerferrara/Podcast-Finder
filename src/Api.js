@@ -1,39 +1,20 @@
 import * as Actions from './redux/Actions';
 import { store } from './redux/Reducer';
 
-const secret = 'b1a57caa66e8681bbe0ab3ddaf306616ff301b12abfa4d76e270d567f05e9cea';
-const appId = '06771e6f51e64a127d7ce7402f2fbcc937ab011f8bd205152f6494c4d7dd6c28';
+const appId = '197812daf007f6524a6e6e175cedc1681b5774f31c321d31adc2b43dc77839cb';
+const secret = 'f19bd3429076001cfea686a9a17fd9a9f288536814eb541263ec93118c2de674';
 
 // const tech = 'https://itunes.apple.com/search?country=us&term=tech&media=podcast';
 const genre = 'https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/genres?id=';
 const podcastsInGenre = 'https://itunes.apple.com/search?term=podcast&limit=200&genreId='
 
-
-
-
-var Audiosearch = require('audiosearch-client-node');
-
-var audiosearch = new Audiosearch(appId, secret, null);
-
-console.log(audiosearch);
-
-// export function test() {
-//   audiosearch.searchEpisodes('cat').then(function (results) {
-//     console.log("Audiosear.ch results>>>>>>>>>")
-//     console.log(results);
-//   });
-// }
-
-
 export function getGenres() {
-  console.log("getting genres");
   requestAsync(genre+'26')
     .then(data => {
       let result = [];
       for(let i in data[26].subgenres){
         result.push(data[26].subgenres[i]);
       }
-      console.log(result);
       store.dispatch(Actions.setCategories(result));
     })
     .catch(err => {
@@ -42,7 +23,6 @@ export function getGenres() {
 }
 
 export function getResults() {
-  console.log("getting results");
 
   const selectedCat = store.getState().selectedCat;
   const categories = store.getState().categories;
@@ -52,19 +32,15 @@ export function getResults() {
     let catObj = categories.find(genre => {
       return genre.name === cat;
     });
-    console.log(catObj);
     return catObj.id;
   });
-  console.log(catIds);
 
   // Check for explicit content
 
   let age = '&explicit=';
   if(store.getState().age >= 18) {
-    console.log("Explicit");
     age = age + "Yes";
   } else {
-    console.log("Not explicit");
     age = age + "No";
   }
 
@@ -73,14 +49,11 @@ export function getResults() {
     requestAsync(podcastsInGenre+catIds[0]+age)
       .then(data => {
         let results = [];
-        console.log(data.results);
         data.results.forEach(result => {
           if(containsMostIds(result.genreIds, catIds)) {
             results.push(result);
           }
         });
-        console.log("now our results");
-        console.log(results);
         store.dispatch(Actions.addResults(results))
       })
       .catch(err => {

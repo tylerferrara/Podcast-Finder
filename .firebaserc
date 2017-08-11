@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "mvp": "podcast-finder",
+    "default": "podcast-finder"
+  }
+}
